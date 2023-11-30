@@ -1,0 +1,154 @@
+﻿@page
+@model TriniCars4SaleWithLogin.Pages.Vehicles.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="container">
+    <div class="vehiclePreview">
+
+
+        <dl class="row">
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.LicensePlate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.LicensePlate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.Make)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.Make)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.Model)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.Model)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.Year)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.Year)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.Colour)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.Colour)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.EngineSize)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.EngineSize)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.Mileage)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.Mileage)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.Transmission)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.Transmission)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.Features)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.Features)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.AdditionalInfo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.AdditionalInfo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.AskingPrice)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.AskingPrice)
+            </dd
+            <dt class="col-sm-2">
+                <h5> @Html.DisplayNameFor(model => model.Vehicle.ContactName)</h5>
+               
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.ContactName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vehicle.ContactNum)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vehicle.ContactNum)
+            </dd>
+            <dt>
+            @Html.DisplayNameFor(model => model.Vehicle.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Vehicle.Status)
+        </dd>
+
+        </dl>
+    </div>
+
+    <div class="VehicleImg">
+        <div class="image1">
+            <img src="@Url.Content(Model.Vehicle.AdditionalUrl1)" />
+        </div>
+        <br />
+        <div class="image2">
+            <img src="@Url.Content(Model.Vehicle.AdditionalUrl2)" />
+        </div>
+    </div>
+
+
+
+</div>
+
+@if (Model.Vehicle.Status != Models.VehicleStatus.Approved)
+{
+    @if ((await AuthorizationService.AuthorizeAsync(
+     User, Model.Vehicle, VehicleOperations.Approve)).Succeeded)
+    {
+        <form style="display:inline;" method="post">
+            <input type="hidden" name="id" value="@Model.Vehicle.VehicleId" />
+            <input type="hidden" name="status" value="@Models.VehicleStatus.Approved" />
+            <button type="submit" class="btn btn-xs btn-success">Approve</button>
+        </form>
+    }
+}
+
+@if (Model.Vehicle.Status != Models.VehicleStatus.Approved)
+{
+    @if ((await AuthorizationService.AuthorizeAsync(
+     User, Model.Vehicle, VehicleOperations.Reject)).Succeeded)
+    {
+        <form style="display:inline;" method="post">
+            <input type="hidden" name="id" value="@Model.Vehicle.VehicleId" />
+            <input type="hidden" name="status" value="@Models.VehicleStatus.Rejected" />
+            <button type="submit" class="btn btn-xs btn-danger">Reject</button>
+        </form>
+    }
+}
+
+<div>
+     @if ((await AuthorizationService.AuthorizeAsync(
+         User, Model.Vehicle,
+         VehicleOperations.Update)).Succeeded)
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Vehicle.VehicleId">Edit</a>
+        <text> | </text>
+    }
+    <a asp-page="./Index">Back to List</a>
+</div>

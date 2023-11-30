@@ -1,0 +1,90 @@
+﻿@page
+@model SearchModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+<div class="container">
+    <div class="form">
+        <form asp-page="Search"  method="get" enctype="multipart/form-data">
+
+            <p>
+                <label class="col-sm-2">ID No.: <input class="col-sm-15" type="text" name="SearchID" value="" /></label>
+                <label class="col-sm-2">License : <input class="col-sm-15" type="text" name="SearchLicense" value="" /></label>
+                <label class="col-sm-2">Make Of Car: <input class="col-sm-15" type="text" name="SearchMake" /></label><br />
+                <label class="col-sm-2">Year: <input class="col-sm-15" type="text" name="SearchYear" value="" /></label>
+                <label class="col-sm-2">Model Of Car: <input class="col-sm-15" type="text" name="SearchModel" value="" /></label>
+                <label class="col-sm-2">Engine Size <input class="col-sm-15" type="text" name="SearchSize" value="" /></label><br />
+                <label class="col-sm-2">Asking Price: <select class="col-sm-15" name="SearchPrice"><option selected></option><option value="Minimum">Minimum</option><option value="Maximum">Maximum</option></select></label><br />
+                <label class="col-sm-2">Transmission: <select class="col-sm-15" name="SearchTransmission"><option selected></option><option>Automatic</option><option>Manual</option></select></label>
+                <br /><br />
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+    </div>
+
+    @foreach (var item in Model.Vehicle)
+    {
+        @if (item.Status == Models.VehicleStatus.Approved)
+        {
+            <div class="preview">
+                <div class="vehiclePreview">
+
+                    <dl class="col">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(modelItem => item.VehicleId)
+                        </dt>
+                        <dd class="col-sm-10">
+                            <a asp-page="Details" asp-route-id="@item.VehicleId">@item.VehicleId : Details</a>
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(modelItem => item.Make)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(modelItem => item.Make)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(modelItem => item.Model)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => item.LicensePlate)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(modelItem => item.LicensePlate)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => item.AskingPrice)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(modelItem => item.AskingPrice)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => item.ContactNum)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(modelItem => item.ContactNum)
+                        </dd>
+
+
+                    </dl>
+
+
+                </div>
+
+
+                <div class="vehicleImg">
+                    <img src="@Url.Content(@item.ThumbUrl)" />
+
+                </div>
+            </div>
+        }
+        
+    }
+
+</div>

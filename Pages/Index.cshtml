@@ -1,0 +1,70 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container">
+    @foreach (var item in Model.Vehicle)
+    {
+        @if (item.Status == Models.VehicleStatus.Approved)
+        {
+            <div class="VehiclePreview">
+
+
+                <dl class="col">
+
+                    <dt>
+                        @Html.DisplayNameFor(modelItem => item.VehicleId)
+                    </dt>
+                    <dd>
+                        <a asp-page="Details" asp-route-id="@item.VehicleId">@item.VehicleId : Details</a>
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(modelItem => item.Make)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.Make)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(modelItem => item.Model)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => item.LicensePlate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.LicensePlate)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => item.AskingPrice)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.AskingPrice)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => item.ContactNum)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.ContactNum)
+                    </dd>
+
+
+
+                </dl>
+
+
+
+            </div>
+            <div class="img">
+                <img src="@Url.Content(@item.ThumbUrl)" />
+
+            </div>
+        }
+
+    }
+
+</div>
+

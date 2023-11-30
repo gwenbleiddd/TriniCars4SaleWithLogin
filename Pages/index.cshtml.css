@@ -1,0 +1,49 @@
+﻿
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    background-color: aliceblue;
+    border-radius: .5rem;
+    padding:30px;
+    margin:0 auto;
+    
+     
+}
+
+.VehiclePreview {
+    
+    padding-left: 10px;
+    width: 55%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+
+.img {
+    
+    margin-left:-20%;
+}
+
+img {
+    width: 80%;
+    border-radius: .5rem;
+    filter: drop-shadow(grey .8rem .5rem 4px);
+}
+
+.col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+dt{
+  width:150px;
+}
+
+dd{
+    width:150px;
+}
+
+
+
+

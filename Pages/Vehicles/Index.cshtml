@@ -1,0 +1,136 @@
+﻿@page
+@model TriniCars4SaleWithLogin.Pages.Vehicles.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1></h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].LicensePlate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].Make)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].Colour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].EngineSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].Mileage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].Transmission)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].Features)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].AdditionalInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].AskingPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].ContactName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].ContactNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].ThumbUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Vehicle)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LicensePlate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Make)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Colour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EngineSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mileage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Transmission)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Features)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdditionalInfo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AskingPrice)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <img src="@Url.Content(@item.ThumbUrl)" />
+                </td>
+                <td>
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                   User, item,VehicleOperations.Update)).Succeeded)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.VehicleId">Edit</a>
+                        <text>  </text>
+                    }
+
+                    <a asp-page="./Details" asp-route-id="@item.VehicleId">Details</a>
+
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                   User, item,
+                   VehicleOperations.Delete)).Succeeded)
+                    {
+                        <text>  </text>
+                        <a asp-page="./Delete" asp-route-id="@item.VehicleId">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

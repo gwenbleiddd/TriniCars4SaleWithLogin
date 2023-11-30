@@ -1,0 +1,52 @@
+﻿
+.container {
+    display: grid;
+    grid-template-rows: 1fr;
+    
+    background-color: aliceblue;
+    border-radius: .5rem;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.form {
+   /* border-style: groove;*/
+}
+
+.preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+}
+
+.vehiclePreview {
+    padding-left: 10px;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /*border-style: groove;*/
+}
+
+.vehicleImg {
+    
+   /* border-style: groove;*/
+}
+
+img {
+    width:95%;
+    border-radius: .5rem;
+    filter: drop-shadow(grey .8rem .5rem 4px);
+}
+
+.col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+dt {
+    width: 150px;
+}
+
+dd {
+    width: 150px;
+}
