@@ -62,18 +62,37 @@ namespace TriniCars4SaleWithLogin.Pages.Vehicles
                     string AdditionalUrl1 = string.Empty;
                     string AdditionalUrl2 = string.Empty;
 
-                    if(vehicle.ThumbUrl != null)
+                    if (vehicle.ThumbFile != null)
                     {
-                        if(data.ThumbUrl != null)
+                        if (!string.IsNullOrEmpty(data.ThumbUrl))
                         {
-                            string file = Path.Combine(Environment.WebRootPath, "Images/Thumbs/",data.ThumbUrl);
-                            if(System.IO.File.Exists(file))
+                            string oldFile = Path.Combine(
+                                Environment.WebRootPath,
+                                data.ThumbUrl.Replace("~/", "")
+                            );
+
+                            if (System.IO.File.Exists(oldFile))
                             {
-                                System.IO.File.Delete(file);
+                                System.IO.File.Delete(oldFile);
                             }
                         }
-                        ThumbUrl = "~/" + await uploadImage(thumbFolder, vehicle.ThumbFile);
+
+                        ThumbUrl = "~/" + await uploadImage("Images/Thumbs/", vehicle.ThumbFile);
+
+                        data.ThumbUrl = ThumbUrl;
                     }
+                    if (vehicle.AdditionalFile1 != null)
+                    {
+                        AdditionalUrl1 = "~/" + await uploadImage("Images/Gallery/", vehicle.AdditionalFile1);
+                        data.AdditionalUrl1 = AdditionalUrl1;
+                    }
+
+                    if (vehicle.AdditionalFile2 != null)
+                    {
+                        AdditionalUrl2 = "~/" + await uploadImage("Images/Gallery/", vehicle.AdditionalFile2);
+                        data.AdditionalUrl2 = AdditionalUrl2;
+                    }
+
                     data.LicensePlate = vehicle.LicensePlate;
                     data.Make = vehicle.Make;
                     data.Model = vehicle.Model;

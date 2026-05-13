@@ -38,8 +38,8 @@ builder.Services.AddSingleton<IAuthorizationHandler,
 var servicesLog = builder.Services;
 var configuration = builder.Configuration;
 
-builder.Services.AddAuthentication()
-   .AddGoogle(options =>
+builder.Services.AddAuthentication();
+   /*.AddGoogle(options =>
    {
        IConfigurationSection googleAuthNSection =
        configuration.GetSection("Authentication:Google");
@@ -57,13 +57,14 @@ builder.Services.AddAuthentication()
        configuration.GetSection("Authentication:Facebook");
        options.AppId = FBAuthNSection["AppId"];
        options.AppSecret = FBAuthNSection["AppSecret"];
-   });
+   });*/
 
 var app = builder.Build();
 
 //seed vehicles
 using (var scope = app.Services.CreateScope())
 {
+    
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<ApplicationDbContext>();
     context.Database.Migrate();

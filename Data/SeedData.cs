@@ -33,6 +33,7 @@ namespace TriniCars4SaleWithLogin.Data
             var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
 
             var user = await userManager.FindByNameAsync(UserName);
+           
             if (user == null)
             {
                 user = new IdentityUser
@@ -109,7 +110,7 @@ namespace TriniCars4SaleWithLogin.Data
                         AskingPrice = 190.000M,
                         ContactName = "Jerry Garcia",
                         ContactNum = "778-8845",
-                        ThumbUrl = "~/Images/Thumbs/corolla.jpg",
+                        ThumbUrl = "/Images/Thumbs/corolla.jpg",
                         Status = VehicleStatus.Approved,
                         OwnerID = adminID
                     },
@@ -129,7 +130,9 @@ namespace TriniCars4SaleWithLogin.Data
                          AskingPrice = 35.500M,
                          ContactName = "Val Kilmer",
                          ContactNum = "745-1845",
-                         ThumbUrl = "~/Images/Thumbs/tiida.jpg",
+                         ThumbUrl = "/Images/Thumbs/tiida.jpg",
+                         AdditionalUrl1 = "/Images/Gallery/c1d0a0e8-3829-491f-8cdc-612b8a72091c_audi1.jpg",
+                         AdditionalUrl2 = "/Images/Gallery/7ea16608-8676-4f96-8343-3c33ebb09498_audi2.jpg",
                          Status = VehicleStatus.Approved,
                          OwnerID = adminID
                      },
@@ -149,7 +152,7 @@ namespace TriniCars4SaleWithLogin.Data
                           AskingPrice = 10.020M,
                           ContactName = "Monkey D Luffy",
                           ContactNum = "758-4545",
-                          ThumbUrl = "~/Images/Thumbs/jimney.jpg",
+                          ThumbUrl = "/Images/Thumbs/jimney.jpg",
                           Status = VehicleStatus.Approved,
                           OwnerID = adminID
                       },
@@ -172,7 +175,7 @@ namespace TriniCars4SaleWithLogin.Data
                           AskingPrice = 218.200M,
                           ContactName = "Trafalga Law",
                           ContactNum = "339-8255",
-                          ThumbUrl = "~/Images/Thumbs/vezel1.jpg",
+                          ThumbUrl = "/Images/Thumbs/vezel1.jpg",
                           Status = VehicleStatus.Approved,
                           OwnerID = adminID
                       }
