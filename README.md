@@ -95,10 +95,19 @@ dotnet restore
 dotnet ef database update
 ```
 
-5. Configure seeded admin account
+5. Configure Default Admin Access
+
+The system seeds default accounts on startup. These are required to access admin features such as vehicle approval.
+
+Configure the seeded password using user secrets:
+
 ```bash
 dotnet user-secrets set "SeedUserPW" "Password123!"
 ```
+
+- **Admin Email:** admin@contoso.com  
+- **Manager Email:** manager@contoso.com 
+
 
 6. Run the application
 ```bash
