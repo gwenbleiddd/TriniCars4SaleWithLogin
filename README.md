@@ -99,7 +99,7 @@ dotnet ef database update
 
    The system seeds default accounts on startup. These are required to access admin features such as vehicle approval.
 
-Configure the seeded password using user secrets:
+   Configure the seeded password using user secrets:
 
 ```bash
 dotnet user-secrets set "SeedUserPW" "Password123!"
