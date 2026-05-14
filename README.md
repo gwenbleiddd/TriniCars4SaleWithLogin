@@ -97,7 +97,7 @@ dotnet ef database update
 
 5. Configure Default Admin Access
 
-The system seeds default accounts on startup. These are required to access admin features such as vehicle approval.
+   The system seeds default accounts on startup. These are required to access admin features such as vehicle approval.
 
 Configure the seeded password using user secrets:
 
