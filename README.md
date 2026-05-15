@@ -145,6 +145,7 @@ dotnet run
 ## 📄 License
 
 This project is developed for academic purposes as part of **ITEC 342**.
+---
 
 ## 👤 Author
 
