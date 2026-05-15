@@ -145,6 +145,7 @@ dotnet run
 ## 📄 License
 
 This project is developed for academic purposes as part of **ITEC 342**.
+
 ---
 
 ## 👤 Author
@@ -152,3 +153,5 @@ This project is developed for academic purposes as part of **ITEC 342**.
 Dominic Salandy  
 Final-year BSc Information Technology Student  
 GitHub: https://github.com/gwenbleiddd
+
+---
